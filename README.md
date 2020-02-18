@@ -9,7 +9,8 @@ Display informational boxes in the terminal.
 Your `Cargo.toml` should include `boxx` as a dependency
 
 ```toml
-boxx = "0.0.0-alpha"
+[dependencies]
+boxx = "0.0.1-alpha"
 ```
 
 ```rust

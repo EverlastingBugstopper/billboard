@@ -4,12 +4,27 @@ use crate::BorderStyle;
 /// the border of a `Boxx`
 #[derive(Clone, PartialEq, Debug)]
 pub struct BorderComponents {
-    pub(crate) top_left: String,
-    pub(crate) horizontal: String,
-    pub(crate) top_right: String,
-    pub(crate) vertical: String,
-    pub(crate) bottom_right: String,
-    pub(crate) bottom_left: String,
+    /// `String` to display as the top left corner of a `Boxx` border
+    /// This should be one visual character wide
+    pub top_left: String,
+
+    /// `String` to repeat as the top and bottom of a `Boxx` border
+    pub horizontal: String,
+
+    /// `String` to display as the top right corner of a `Boxx` border
+    /// This should be one visual character wide
+    pub top_right: String,
+
+    /// `String` to repeat as the left and right of a `Boxx` border
+    pub vertical: String,
+
+    /// `String` to display as the bottom right corner of a `Boxx` border
+    /// This should be one visual character wide
+    pub bottom_right: String,
+
+    /// `String` to display as the bottom left corner of a `Boxx` border
+    /// This should be one visual character wide
+    pub bottom_left: String,
 }
 
 impl BorderComponents {

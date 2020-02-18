@@ -1,7 +1,7 @@
 [package]
 name = "boxx"
 description = "Display informational boxes in the terminal."
-version = "0.0.0-alpha"
+version = "0.0.1-alpha"
 repository = "https://github.com/EverlastingBugstopper/boxx"
 authors = ["Avery Harnish <averyharnish@gmail.com>"]
 categories = ["value-formatting"]
@@ -30,3 +30,6 @@ path = "examples/hello_world.rs"
 console = "0.9"
 term_size = "0.3"
 unicode-width = "0.1"
+
+[dev-dependencies]
+version-sync = "0.8"
