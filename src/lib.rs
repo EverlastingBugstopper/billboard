@@ -1,3 +1,11 @@
+#![deny(missing_docs)]
+#![deny(missing_debug_implementations)]
+
+//! boxx
+//!
+//! The `boxx` crate provides a convenient, high-level API
+//! for creating boxes in the terminal.
+
 mod config;
 pub use config::{Alignment, BorderColor, BorderComponents, BorderStyle, Config};
 
@@ -8,28 +16,37 @@ use unicode_width::UnicodeWidthStr;
 const SPACE: &str = " ";
 const NEWLINE: &str = "\n";
 
+/// `Boxx` provides a sensible default display configuration
+/// in addition to a builder-style API that allows for customization
 #[derive(PartialEq, Clone, Debug)]
 pub struct Boxx {
+    /// Display configuration of the `Boxx`
     pub config: Config,
 }
 
 impl Boxx {
+    /// The default configuration for a `Boxx`
     pub fn default() -> Boxx {
         Config::default().build()
     }
 
+    /// Creates a new `Boxx` from a pre-made `Config`
     pub fn new(config: Config) -> Boxx {
         Boxx { config }
     }
 
+    /// Creates a `Config` to configure a `Boxx`
     pub fn builder() -> Config {
         Config::default()
     }
 
+    /// Prints your `Boxx`ed content to `stdout`
+    /// If your content is long, separate it with line breaks (`\n`)
     pub fn display(&self, content: &str) {
         println!("{}", self.as_str(content));
     }
 
+    /// Get your content in a `Boxx` as a `String`
     pub fn as_str(&self, content: &str) -> String {
         let border_color = match self.config.border_color {
             Some(color) => Style::from_dotted_str(&format!("{:?}", color).to_lowercase()),

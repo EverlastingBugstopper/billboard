@@ -1,9 +1,13 @@
 [package]
-authors = ["Avery Harnish <averyharnish@gmail.com>"]
-edition = "2018"
 name = "boxx"
+description = "Display informational boxes in the terminal."
 version = "0.0.0-alpha"
-
+repository = "https://github.com/EverlastingBugstopper/boxx"
+authors = ["Avery Harnish <averyharnish@gmail.com>"]
+categories = ["value-formatting"]
+keywords = ["boxx", "cli", "terminal", "boxen", "info"]
+readme = "README.md"
+edition = "2018"
 
 [[example]]
 name = "alignment"

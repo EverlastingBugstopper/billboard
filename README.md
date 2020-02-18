@@ -2,7 +2,7 @@
 
 _note: this library is still in early stages and updates may contain breaking changes_
 
-A library that displays informational boxes in the terminal.
+Display informational boxes in the terminal.
 
 ## Example
 
