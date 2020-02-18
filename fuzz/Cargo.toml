@@ -1,0 +1,28 @@
+
+[package]
+name = "boxx-fuzz"
+version = "0.0.0"
+authors = ["Automatically generated"]
+publish = false
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.3"
+
+[dependencies.boxx]
+path = ".."
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "display"
+path = "fuzz_targets/display.rs"
+
+[[bin]]
+name = "custom_border"
+path = "fuzz_targets/custom_border.rs"

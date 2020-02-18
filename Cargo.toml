@@ -1,0 +1,27 @@
+[package]
+authors = ["Avery Harnish <averyharnish@gmail.com>"]
+edition = "2018"
+name = "boxx"
+version = "0.0.0-alpha"
+
+
+[[example]]
+name = "alignment"
+path = "examples/alignment.rs"
+
+[[example]]
+name = "color"
+path = "examples/color.rs"
+
+[[example]]
+name = "custom"
+path = "examples/custom.rs"
+
+[[example]]
+name = "hello_world"
+path = "examples/hello_world.rs"
+
+[dependencies]
+console = "0.9"
+term_size = "0.3"
+unicode-width = "0.1"
