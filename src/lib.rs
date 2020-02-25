@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
-#![doc(html_root_url = "https://docs.rs/boxx/0.0.1-alpha")]
+#![doc(html_root_url = "https://docs.rs/boxx/0.0.2-beta")]
 
 //! boxx
 //!

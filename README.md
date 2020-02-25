@@ -1,6 +1,6 @@
 # Boxx
 
-_note: this library is still in early stages and updates may contain breaking changes_
+_note: this library is still in development and updates may contain breaking changes_
 
 Display informational boxes in the terminal.
 
@@ -10,7 +10,7 @@ Your `Cargo.toml` should include `boxx` as a dependency
 
 ```toml
 [dependencies]
-boxx = "0.0.1-alpha"
+boxx = "0.0.2-beta"
 ```
 
 ```rust
