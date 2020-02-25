@@ -1,4 +1,5 @@
 use boxx::{BorderComponents, BorderStyle, Boxx};
+use console::style;
 
 pub fn main() {
     Boxx::builder()
@@ -11,5 +12,9 @@ pub fn main() {
             top_right: "0".to_string(),
         }))
         .build()
-        .display("This is a box\nwith a custom border\nwhich i think is pretty pretty cool");
+        .display(&format!(
+            "This is a box\nwith a custom border\nwhich i think is {} {} cool",
+            style("pretty").red(),
+            style("pretty").green()
+        ));
 }
