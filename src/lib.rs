@@ -29,12 +29,13 @@ pub struct Boxx {
 }
 
 impl Boxx {
-    /// Create `Boxx` with deafult configuration.
+    /// Create a `Boxx` with deafult configuration.
     ///
     /// # Example
     ///
     /// ```
     /// use boxx::Boxx;
+    ///
     /// let boxx = Boxx::default();
     /// ```
     pub fn default() -> Boxx {
@@ -42,22 +43,63 @@ impl Boxx {
     }
 
     /// Creates a new `Boxx` from a pre-made `Config`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use boxx::{Boxx, Config};
+    ///
+    /// let config = Config::default();
+    /// let boxx = Boxx::new(config);
+    /// ```
     pub fn new(config: Config) -> Boxx {
         Boxx { config }
     }
 
-    /// Creates a `Config` to configure a `Boxx`
+    /// Get a configuration builder to customize the appearance of a `Boxx`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use boxx::Boxx;
+    ///
+    /// let boxx = Boxx::builder().padding(3).margin(1).build();
+    /// ```
     pub fn builder() -> Config {
         Config::default()
     }
 
     /// Prints your `Boxx`ed content to `stdout`
-    /// If your content is long, separate it with line breaks (`\n`)
+    /// If your content is long, separate it with line breaks (`\n`).
+    ///
+    /// If the user's terminal is too small, or something goes wrong with displaying
+    /// your content in a box, this function will print the content passed to it
+    /// with no modifications.
+    ///
+    /// If you would like to handle specific error cases, it is recommended to use
+    /// `.as_str()` directly.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use boxx::Boxx;
+    ///
+    /// Boxx::default().display("Hello, World!\nNew lines can be created with the newline separator :).");
+    /// ```
     pub fn display(&self, content: &str) {
         println!("{}", self.as_str(content).unwrap_or(content.to_string()));
     }
 
-    /// Get your content in a `Boxx` as a `String`
+    /// Get your content in a `Boxx` as a `String`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use boxx::Boxx;
+    ///
+    /// let result = Boxx::default().as_str("Hello, World!")?;
+    /// println!("{}", result);
+    /// ```
     pub fn as_str(&self, content: &str) -> Result<String, VisualWidthError> {
         let border_color = match self.config.border_color {
             Some(color) => Style::from_dotted_str(&format!("{:?}", color).to_lowercase()),
