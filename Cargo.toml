@@ -1,14 +1,24 @@
 [package]
-name = "boxx"
-description = "Display informational boxes in the terminal."
-version = "0.0.1-alpha"
-repository = "https://github.com/EverlastingBugstopper/boxx"
 authors = ["Avery Harnish <averyharnish@gmail.com>"]
 categories = ["value-formatting"]
-keywords = ["boxx", "cli", "terminal", "boxen", "info"]
-readme = "README.md"
+description = "Display informational boxes in the terminal."
 edition = "2018"
+keywords = ["boxx", "cli", "terminal", "boxen", "info"]
 license = "MIT/Apache-2.0"
+name = "boxx"
+readme = "README.md"
+repository = "https://github.com/EverlastingBugstopper/boxx"
+version = "0.0.1-alpha"
+
+[dependencies]
+console = "0.9"
+strip-ansi-escapes = "0.1"
+term_size = "0.3"
+thiserror = "1.0"
+unicode-width = "0.1"
+
+[dev-dependencies]
+version-sync = "0.8"
 
 [[example]]
 name = "alignment"
@@ -25,11 +35,3 @@ path = "examples/custom.rs"
 [[example]]
 name = "hello_world"
 path = "examples/hello_world.rs"
-
-[dependencies]
-console = "0.9"
-term_size = "0.3"
-unicode-width = "0.1"
-
-[dev-dependencies]
-version-sync = "0.8"
