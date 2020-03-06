@@ -1,9 +1,8 @@
-mod alignment;
 mod border;
 mod space;
 
-pub use alignment::Alignment;
 pub use border::{BorderColor, BorderComponents, BorderStyle};
+pub use console::Alignment;
 use space::Space;
 
 use crate::Boxx;

@@ -8,12 +8,10 @@
 //! for creating boxes in the terminal.
 
 mod config;
-mod visual;
 
 pub use config::{Alignment, BorderColor, BorderComponents, BorderStyle, Config};
-use visual::{visual_width, VisualWidthError};
 
-use console::Style;
+use console::{measure_text_width, pad_str, Style};
 use std::cmp;
 
 const SPACE: &str = " ";
@@ -87,7 +85,7 @@ impl Boxx {
     /// Boxx::default().display("Hello, World!\nNew lines can be created with the newline separator :).");
     /// ```
     pub fn display(&self, content: &str) {
-        println!("{}", self.as_str(content).unwrap_or(content.to_string()));
+        println!("{}", self.as_str(content));
     }
 
     /// Get your content in a `Boxx` as a `String`.
@@ -100,7 +98,7 @@ impl Boxx {
     /// let result = Boxx::default().as_str("Hello, World!")?;
     /// println!("{}", result);
     /// ```
-    pub fn as_str(&self, content: &str) -> Result<String, VisualWidthError> {
+    pub fn as_str(&self, content: &str) -> String {
         let border_color = match self.config.border_color {
             Some(color) => Style::from_dotted_str(&format!("{:?}", color).to_lowercase()),
             None => Style::default(),
@@ -113,20 +111,15 @@ impl Boxx {
         lines.push(SPACE.repeat(self.config.padding.bottom));
         let mut widest_length: usize = 0;
         for line in lines.clone() {
-            widest_length = cmp::max(widest_length, visual_width(line.as_str())?);
+            widest_length = cmp::max(widest_length, measure_text_width(line.as_str()));
         }
         for (i, line) in lines.clone().iter().enumerate() {
-            let padding = widest_length - visual_width(line.as_str())?;
-            lines[i] = match &self.config.text_alignment {
-                Alignment::Left => line.clone(),
-                Alignment::Right => format!("{}{}", SPACE.repeat(padding), line),
-                Alignment::Center => format!("{}{}", SPACE.repeat(padding / 2), line),
-            };
+            lines[i] = pad_str(&line, widest_length, self.config.text_alignment, None).to_string();
         }
         let content_width = widest_length + self.config.padding.left + self.config.padding.right;
         let output = if let Some((max_width, _)) = term_size::dimensions() {
             if content_width > max_width {
-                return Ok(content.to_string());
+                return content.to_string();
             }
             let padding_left = SPACE.repeat(self.config.padding.left);
             let margin_left = match &self.config.box_alignment {
@@ -142,7 +135,7 @@ impl Boxx {
                 }
             };
             let mut horizontal_str = self.config.border_components.horizontal.to_string();
-            let mut horizontal_str_width = visual_width(horizontal_str.as_str())?;
+            let mut horizontal_str_width = measure_text_width(horizontal_str.as_str());
             if horizontal_str_width == 0 {
                 horizontal_str.push_str(" ");
                 horizontal_str_width = 1;
@@ -150,7 +143,7 @@ impl Boxx {
             let mut horizontal = horizontal_str.repeat(
                 (content_width % horizontal_str_width) + (content_width / horizontal_str_width),
             );
-            while visual_width(horizontal.as_str())? > content_width {
+            while measure_text_width(horizontal.as_str()) > content_width {
                 horizontal.pop();
             }
             let top = format!(
@@ -171,7 +164,7 @@ impl Boxx {
             );
             let mut middle = String::from("\n");
             let mut vertical = self.config.border_components.vertical.to_string();
-            if visual_width(vertical.as_str())? == 0 {
+            if measure_text_width(vertical.as_str()) == 0 {
                 vertical.push_str(" ");
             }
             let vertical = vertical.repeat(lines.len());
@@ -185,7 +178,7 @@ impl Boxx {
                 middle.push_str(&padding_left);
                 middle.push_str(&line);
                 middle.push_str(&SPACE.repeat(
-                    content_width - visual_width(line.as_str())? - &self.config.padding.left,
+                    content_width - measure_text_width(line.as_str()) - &self.config.padding.left,
                 ));
                 middle.push_str(&vertical);
                 middle.push_str(NEWLINE);
@@ -194,6 +187,6 @@ impl Boxx {
         } else {
             content.to_string()
         };
-        Ok(output)
+        output
     }
 }
