@@ -1,5 +1,5 @@
-use boxx::Boxx;
+use billboard::Billboard;
 
 fn main() {
-    Boxx::default().display("Hello, World!");
+    Billboard::default().display("Hello, World!");
 }

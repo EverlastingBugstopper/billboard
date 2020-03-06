@@ -3,19 +3,17 @@ authors = ["Avery Harnish <averyharnish@gmail.com>"]
 categories = ["value-formatting"]
 description = "Display informational boxes in the terminal."
 edition = "2018"
-keywords = ["boxx", "cli", "terminal", "boxen", "info"]
+keywords = ["billboard", "cli", "terminal", "boxen", "info"]
 license = "MIT/Apache-2.0"
-name = "boxx"
+name = "billboard"
 readme = "README.md"
-repository = "https://github.com/EverlastingBugstopper/boxx"
+repository = "https://github.com/EverlastingBugstopper/billboard"
 version = "0.0.2-beta"
 
 [dependencies]
 console = "0.9"
-strip-ansi-escapes = "0.1"
 term_size = "0.3"
 thiserror = "1.0"
-unicode-width = "0.1"
 
 [dev-dependencies]
 version-sync = "0.8"

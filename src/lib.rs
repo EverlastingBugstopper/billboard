@@ -1,11 +1,11 @@
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
-#![doc(html_root_url = "https://docs.rs/boxx/0.0.2-beta")]
+#![doc(html_root_url = "https://docs.rs/billboard/0.1.0")]
 
-//! boxx
+//! billboard
 //!
-//! The `boxx` crate provides a convenient, high-level API
-//! for creating boxes in the terminal.
+//! The `billboard` crate provides a convenient, high-level API
+//! for creating billboards in the terminal.
 
 mod config;
 
@@ -17,57 +17,57 @@ use std::cmp;
 const SPACE: &str = " ";
 const NEWLINE: &str = "\n";
 
-/// `Boxx` is a customizable data structure that will pretty print content
+/// `Billboard` is a customizable data structure that will pretty print content
 /// separated by newlines (`\n`).
 #[derive(PartialEq, Clone, Debug)]
-pub struct Boxx {
-    /// Display configuration of the `Boxx`. This field dictates how a `Boxx` will
+pub struct Billboard {
+    /// Display configuration of the `Billboard`. This field dictates how a `Billboard` will
     /// be displayed in the terminal.
     pub config: Config,
 }
 
-impl Boxx {
-    /// Create a `Boxx` with deafult configuration.
+impl Billboard {
+    /// Create a `Billboard` with deafult configuration.
     ///
     /// # Example
     ///
     /// ```
-    /// use boxx::Boxx;
+    /// use billboard::Billboard;
     ///
-    /// let boxx = Boxx::default();
+    /// let billboard = Billboard::default();
     /// ```
-    pub fn default() -> Boxx {
+    pub fn default() -> Billboard {
         Config::default().build()
     }
 
-    /// Creates a new `Boxx` from a pre-made `Config`.
+    /// Creates a new `Billboard` from a pre-made `Config`.
     ///
     /// # Example
     ///
     /// ```
-    /// use boxx::{Boxx, Config};
+    /// use billboard::{Billboard, Config};
     ///
     /// let config = Config::default();
-    /// let boxx = Boxx::new(config);
+    /// let billboard = Billboard::new(config);
     /// ```
-    pub fn new(config: Config) -> Boxx {
-        Boxx { config }
+    pub fn new(config: Config) -> Billboard {
+        Billboard { config }
     }
 
-    /// Get a configuration builder to customize the appearance of a `Boxx`.
+    /// Get a configuration builder to customize the appearance of a `Billboard`.
     ///
     /// # Example
     ///
     /// ```
-    /// use boxx::Boxx;
+    /// use billboard::Billboard;
     ///
-    /// let boxx = Boxx::builder().padding(3).margin(1).build();
+    /// let billboard = Billboard::builder().padding(3).margin(1).build();
     /// ```
     pub fn builder() -> Config {
         Config::default()
     }
 
-    /// Prints your `Boxx`ed content to `stdout`
+    /// Prints your `Billboard`ed content to `stdout`
     /// If your content is long, separate it with line breaks (`\n`).
     ///
     /// If the user's terminal is too small, or something goes wrong with displaying
@@ -80,22 +80,22 @@ impl Boxx {
     /// # Example
     ///
     /// ```
-    /// use boxx::Boxx;
+    /// use billboard::Billboard;
     ///
-    /// Boxx::default().display("Hello, World!\nNew lines can be created with the newline separator :).");
+    /// Billboard::default().display("Hello, World!\nNew lines can be created with the newline separator :).");
     /// ```
     pub fn display(&self, content: &str) {
         println!("{}", self.as_str(content));
     }
 
-    /// Get your content in a `Boxx` as a `String`.
+    /// Get your content in a `Billboard` as a `String`.
     ///
     /// # Example
     ///
     /// ```
-    /// use boxx::Boxx;
+    /// use billboard::Billboard;
     ///
-    /// let result = Boxx::default().as_str("Hello, World!")?;
+    /// let result = Billboard::default().as_str("Hello, World!")?;
     /// println!("{}", result);
     /// ```
     pub fn as_str(&self, content: &str) -> String {

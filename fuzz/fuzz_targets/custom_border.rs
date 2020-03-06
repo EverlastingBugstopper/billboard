@@ -1,11 +1,11 @@
 #![no_main]
 use libfuzzer_sys::fuzz_target;
 
-use boxx::{BorderComponents, BorderStyle, Boxx};
+use billboard::{Billboard, BorderComponents, BorderStyle};
 
 fuzz_target!(|data: &[u8]| {
     if let Ok(s) = std::str::from_utf8(data) {
-        let _ = Boxx::builder()
+        let _ = Billboard::builder()
             .border_style(BorderStyle::Custom(BorderComponents {
                 top_left: "x".to_string(),
                 top_right: "x".to_string(),
