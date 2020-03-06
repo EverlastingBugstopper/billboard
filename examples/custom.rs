@@ -1,8 +1,8 @@
-use boxx::{BorderComponents, BorderStyle, Boxx};
+use billboard::{Billboard, BorderComponents, BorderStyle};
 use console::style;
 
 pub fn main() {
-    Boxx::builder()
+    Billboard::builder()
         .border_style(BorderStyle::Custom(BorderComponents {
             horizontal: "10".to_string(),
             vertical: "10".to_string(),
@@ -13,7 +13,7 @@ pub fn main() {
         }))
         .build()
         .display(&format!(
-            "This is a box\nwith a custom border\nwhich i think is {} {} cool",
+            "This is a billboard\nwith a custom border\nwhich i think is {} {} cool",
             style("pretty").red(),
             style("pretty").green()
         ));

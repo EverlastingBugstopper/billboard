@@ -1,9 +1,9 @@
-use boxx::{Alignment, Boxx};
+use billboard::{Alignment, Billboard};
 
 pub fn main() {
-    Boxx::builder()
+    Billboard::builder()
         .text_alignment(Alignment::Right)
         .box_alignment(Alignment::Right)
         .build()
-        .display("This box has been\nright aligned while we weren't looking!\n...why!??! ☹️");
+        .display("This billboard has been\nright aligned while we weren't looking!\n...why!??! ☹️");
 }

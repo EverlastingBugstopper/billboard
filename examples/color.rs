@@ -1,11 +1,11 @@
-use boxx::{BorderColor, Boxx};
+use billboard::{Billboard, BorderColor};
 
 fn main() {
-    Boxx::builder()
+    Billboard::builder()
         .border_color(BorderColor::Blue)
         .build()
         .display(&format!(
-            "Hello, World!\nThis box has a {} border now!",
+            "Hello, World!\nThis billboard has a {} border now!",
             console::style("blue").blue()
         ));
 }

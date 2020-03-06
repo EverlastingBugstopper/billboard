@@ -1,6 +1,6 @@
 use crate::BorderComponents;
 
-/// Different styles for the border of a `Boxx`.
+/// Different styles for the border of a `Billboard`.
 #[derive(Clone, PartialEq, Debug)]
 pub enum BorderStyle {
     /// Border with a single line:
