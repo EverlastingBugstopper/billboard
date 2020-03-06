@@ -23,4 +23,5 @@ More examples can be found [here](/examples).
 
 ## Acknowledgements
 
-This library was heavily inspired by [boxen](https://npmjs.com/package/boxen), but has no official association with that project.
+This library was heavily inspired by [boxen](https://npmjs.com/package/boxen),
+but has no official association with that project.
