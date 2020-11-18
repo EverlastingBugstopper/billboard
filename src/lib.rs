@@ -190,3 +190,9 @@ impl Billboard {
         output
     }
 }
+
+impl fmt::Display for Billboard {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
