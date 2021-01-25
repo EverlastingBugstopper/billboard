@@ -12,7 +12,7 @@ mod config;
 pub use config::{Alignment, BorderColor, BorderComponents, BorderStyle, Config};
 
 use console::{measure_text_width, pad_str, Style};
-use std::cmp;
+use std::{cmp, fmt::Display};
 
 const SPACE: &str = " ";
 const NEWLINE: &str = "\n";
@@ -27,7 +27,7 @@ pub struct Billboard {
 }
 
 impl Billboard {
-    /// Create a `Billboard` with deafult configuration.
+    /// Create a `Billboard` with default configuration.
     ///
     /// # Example
     ///
@@ -74,9 +74,6 @@ impl Billboard {
     /// your content in a box, this function will print the content passed to it
     /// with no modifications.
     ///
-    /// If you would like to handle specific error cases, it is recommended to use
-    /// `.as_str()` directly.
-    ///
     /// # Example
     ///
     /// ```
@@ -84,8 +81,8 @@ impl Billboard {
     ///
     /// Billboard::default().display("Hello, World!\nNew lines can be created with the newline separator :).");
     /// ```
-    pub fn display(&self, content: &str) {
-        println!("{}", self.as_str(content));
+    pub fn display(&self, content: impl Display) {
+        println!("{}", self.to_string(content.to_string().as_str()));
     }
 
     /// Get your content in a `Billboard` as a `String`.
@@ -95,10 +92,10 @@ impl Billboard {
     /// ```
     /// use billboard::Billboard;
     ///
-    /// let result = Billboard::default().as_str("Hello, World!")?;
+    /// let result = Billboard::default().to_string("Hello, World!");
     /// println!("{}", result);
     /// ```
-    pub fn as_str(&self, content: &str) -> String {
+    pub fn to_string(&self, content: &str) -> String {
         let border_color = match self.config.border_color {
             Some(color) => Style::from_dotted_str(&format!("{:?}", color).to_lowercase()),
             None => Style::default(),
