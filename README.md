@@ -15,7 +15,7 @@ billboard = "0.1"
 use billboard::Billboard;
 
 fn main() {
-  Billboard::default().display("Hello, World!");
+  Billboard::default().eprint("Hello, World!");
 }
 ```
 
