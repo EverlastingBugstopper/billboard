@@ -5,5 +5,5 @@ pub fn main() {
         .text_alignment(Alignment::Right)
         .box_alignment(Alignment::Right)
         .build()
-        .display("This billboard has been\nright aligned while we weren't looking!\n...why!??! ☹️");
+        .eprint("This billboard has been\nright aligned while we weren't looking!\n...why!??! ☹️");
 }

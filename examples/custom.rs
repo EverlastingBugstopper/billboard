@@ -12,7 +12,7 @@ pub fn main() {
             top_right: "0".to_string(),
         }))
         .build()
-        .display(&format!(
+        .eprint(&format!(
             "This is a billboard\nwith a custom border\nwhich i think is {} {} cool",
             style("pretty").red(),
             style("pretty").green()
