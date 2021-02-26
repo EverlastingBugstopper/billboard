@@ -79,10 +79,28 @@ impl Billboard {
     /// ```
     /// use billboard::Billboard;
     ///
-    /// Billboard::default().display("Hello, World!\nNew lines can be created with the newline separator :).");
+    /// Billboard::default().print("Hello, World!\nNew lines can be created with the newline separator :).");
     /// ```
-    pub fn display(&self, content: impl Display) {
-        println!("{}", self.to_string(content.to_string().as_str()));
+    pub fn print(&self, content: impl Display) {
+        println!("{}", self.enclose(content));
+    }
+
+    /// Prints your `Billboard`ed content to `stderr`
+    /// If your content is long, separate it with line breaks (`\n`).
+    ///
+    /// If the user's terminal is too small, or something goes wrong with displaying
+    /// your content in a box, this function will print the content passed to it
+    /// with no modifications.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use billboard::Billboard;
+    ///
+    /// Billboard::default().eprint("Hello, World!\nNew lines can be created with the newline separator :).");
+    /// ```
+    pub fn eprint(&self, content: impl Display) {
+        println!("{}", self.enclose(content));
     }
 
     /// Get your content in a `Billboard` as a `String`.
@@ -92,10 +110,11 @@ impl Billboard {
     /// ```
     /// use billboard::Billboard;
     ///
-    /// let result = Billboard::default().to_string("Hello, World!");
+    /// let result = Billboard::default().enclose("Hello, World!");
     /// println!("{}", result);
     /// ```
-    pub fn to_string(&self, content: &str) -> String {
+    pub fn enclose(&self, content: impl Display) -> String {
+        let content = content.to_string();
         let border_color = match self.config.border_color {
             Some(color) => Style::from_dotted_str(&format!("{:?}", color).to_lowercase()),
             None => Style::default(),
