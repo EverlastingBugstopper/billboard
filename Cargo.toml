@@ -11,12 +11,12 @@ repository = "https://github.com/EverlastingBugstopper/billboard"
 version = "0.1.0"
 
 [dependencies]
-console = "0.9"
+console = "0.14"
 term_size = "0.3"
 thiserror = "1.0"
 
 [dev-dependencies]
-version-sync = "0.8"
+version-sync = "0.9"
 
 [[example]]
 name = "alignment"

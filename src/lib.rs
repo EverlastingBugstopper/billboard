@@ -100,7 +100,7 @@ impl Billboard {
     /// Billboard::default().eprint("Hello, World!\nNew lines can be created with the newline separator :).");
     /// ```
     pub fn eprint(&self, content: impl Display) {
-        println!("{}", self.enclose(content));
+        eprintln!("{}", self.enclose(content));
     }
 
     /// Get your content in a `Billboard` as a `String`.
