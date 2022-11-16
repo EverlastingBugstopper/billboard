@@ -8,7 +8,7 @@ Your `Cargo.toml` should include `billboard` as a dependency
 
 ```toml
 [dependencies]
-billboard = "0.1"
+billboard = "0.2"
 ```
 
 ```rust

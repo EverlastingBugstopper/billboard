@@ -1,6 +1,6 @@
-#![deny(missing_docs)]
-#![deny(missing_debug_implementations)]
-#![doc(html_root_url = "https://docs.rs/billboard/0.1.0")]
+#![deny(missing_docs, missing_debug_implementations, nonstandard_style)]
+#![doc = include_str!("../README.md")]
+#![forbid(unsafe_code)]
 
 //! billboard
 //!
